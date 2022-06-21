@@ -14,7 +14,8 @@
     // 🐨 re-implement this using JSX!
     const className = 'container'
     const children = 'Hellooo World!'
-    const element = <div className={className}>{children}</div>
+    const props = {className, children}
+    const element = <div id="my-thing" {...props} className="default" />
 
     ReactDOM.createRoot(document.getElementById('root')).render(element)
   </script>
