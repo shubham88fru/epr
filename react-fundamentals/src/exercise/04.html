@@ -8,13 +8,42 @@
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
-
+    function Message({greeting, subject}) {
+      return (
+        <div className="message">
+          {greeting}, {subject}
+        </div>
+      )
+    }
+    const PropTypes = {
+      string(props, propName, componentName) {
+        if (
+          typeof props['greeting'] === undefined ||
+          typeof props['greeting'] !== 'string' ||
+          typeof props['subject'] === undefined ||
+          typeof props['subject'] !== 'string'
+        ) {
+          throw new Error('Invalid props')
+        }
+      },
+    }
+    Message.propTypes = {
+      greeting: PropTypes.string,
+      subject: PropTypes.string,
+    }
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
+    // const prop1 = {children: 'Hello world'}
+    // const prop2 = {children: 'Bye Bye wrld'}
     const element = (
       <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
+        {/*{message({children: 'Hello World!!'})}*/}
+        {/*{message({children: 'Goodbye World'})}*/}
+        {/*{React.createElement(message, {children: 'Hello World!!'})}*/}
+        {/*{React.createElement(message, {children: 'Goodbye World'})}*/}
+        {/*<Message {...prop1} />*/}
+        {/*<Message {...prop2} />*/}
+        <Message greeting="Hi" subject="there" />
       </div>
     )
 
